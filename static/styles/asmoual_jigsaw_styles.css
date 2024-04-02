@@ -32,3 +32,39 @@ body::-webkit-scrollbar {
     transform: rotate(-39deg) scaleX(.5) translate(32px, 4px);
     border-radius: 50px 50px 0 0;
 }
+
+.level-label {
+    position: relative;
+    margin-top: -10px;
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    color: #000000;
+    font-family: "Moul", serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    transition: .25s all ease;
+}
+
+.level-label::before {
+    content: " ";
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 0.5em;
+    height: 0.5em;
+    background-color: #6E00FF;
+    border-radius: 0.5em;
+    transition: .25s all ease;
+}
+
+.pres:checked+.level-label {
+    color: #fff;
+    background: #6E00FF;
+    z-index: 1;
+}
+
+.pres:hover:checked+.level-label {
+    box-shadow: #5706c06d 0px 0px 0px 8px;
+}
