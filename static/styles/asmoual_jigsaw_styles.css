@@ -68,3 +68,26 @@ body::-webkit-scrollbar {
 .pres:hover:checked+.level-label {
     box-shadow: #5706c06d 0px 0px 0px 8px;
 }
+
+.notShown {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+#puzzle {
+    position: absolute;
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+    margin: 9em 10%;
+    margin-left: 25%;
+    z-index: -1;
+}
+
+.piece {
+    position: absolute;
+}
+
+#congratulationsContainer {
+    display: none;
+}
