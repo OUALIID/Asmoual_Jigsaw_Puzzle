@@ -123,6 +123,46 @@
             class="absolute top-[9px] left-1 w-8 h-6">
         <div id="errorMessageText" class="ml-8 font-medium text-white text-sm"></div>
     </div>
+
+    <!-- congratulations game -->
+    <div id="congratulationsContainer"
+        class="absolute bg-[#5a4c6a36] w-80 h-[28rem] flex flex-col justify-between items-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-2xl">
+        <img id="goldenCup" src="../static/game_assets/game_images/GoldenCup.svg" class="w-80 h-32 mt-7 hidden">
+        <img id="silverCup" src="../static/game_assets/game_images/SilverCup.svg" class="w-80 h-32 mt-7 hidden">
+        <img id="bronzeCup" src="../static/game_assets/game_images/BronzeCup.svg" class="w-80 h-32 mt-7 hidden">
+
+        <div class="congratulationsContainer flex flex-col items-center justify-center h-[55%]">
+            <div class="relative">
+                <img src="../static/game_assets/game_images/ElapsedTime.svg" class="w-[16rem] h-16 ">
+                <p id="elapsedTimeText"
+                    class="absolute ml-[-0.25rem] mt-[0.2rem] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#706674] hidden"
+                    style="font-family: Moul, serif;">Elapsed Time: </p>
+            </div>
+
+            <div class="relative">
+                <img src="../static/game_assets/game_images/Score.svg" class="w-[16rem] h-16">
+                <p id="scoreText"
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#706674] hidden"
+                    style="font-family: Moul, serif;">Score: </p>
+            </div>
+
+            <div class="relative">
+                <img src="../static/game_assets/game_images/Moves.svg" class="w-[16rem] h-16">
+                <p id="movesText"
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#706674] hidden"
+                    style="font-family: Moul, serif;">Moves: </p>
+            </div>
+        </div>
+
+        <div class="buttons flex justify-around">
+            <button id="exitGameBtn"
+                class="bg-[#6E00FF] text-white rounded-full py-2 px-4 text-xs font-bold font-serif hover:ring-4 hover:ring-[#5706c06d]"
+                style="font-family: Moul, serif;">Exit Game</button>
+            <button id="continueBtn"
+                class="bg-[#6E00FF] text-white rounded-full py-2 px-4 text-xs font-bold font-serif hover:ring-4 hover:ring-[#5706c06d]"
+                style="font-family: Moul, serif;">Continue</button>
+        </div>
+    </div>
 </body>
 
 </html>
