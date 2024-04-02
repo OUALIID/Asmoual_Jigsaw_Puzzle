@@ -289,7 +289,8 @@ const startGame = async () => {
             document.getElementById(
               "movesText"
             ).innerText = `Moves: ${moveCounter}`;
-            document.getElementById("elapsedTimeText")
+            document
+              .getElementById("elapsedTimeText")
               .classList.remove("hidden");
             document.getElementById("scoreText").classList.remove("hidden");
             document.getElementById("movesText").classList.remove("hidden");
@@ -301,73 +302,71 @@ const startGame = async () => {
       }
     };
 
-
 /* ------------------------ This part is related to mouse and touch events ---------------------- */
 
     // mousedown event listener to drag a puzzle piece
     pieceImageElement.onmousedown = (event) => {
-        event.preventDefault();
-        // Checks if the current puzzle piece is not yet complete.
+      event.preventDefault();
+      // Checks if the current puzzle piece is not yet complete.
+      if (!PieceCompleted[pieceIndex]) {
+        PieceBeingDragged = true;
+        pieceImageElement.style.transition = "all 0.1s ease-in-out";
+        movePiece(event.pageX, event.pageY);
+        setTimeout(() => (pieceImageElement.style.transition = "none"), 100);
+        pieceImageElement.style.zIndex = ++zIndex;
+      }
+    };
+
+    // Event listener for mouse movement over the puzzle piece element
+    pieceImageElement.onmousemove = (event) => {
+      if (PieceBeingDragged) {
+        movePiece(event.pageX, event.pageY);
+      }
+    };
+
+    // Event handler for when the mouse leaves the puzzle piece area
+    pieceImageElement.onmouseleave = () => (PieceBeingDragged = false);
+    pieceImageElement.onmouseup = (event) => {
+      if (!PieceCompleted[pieceIndex]) {
+        PieceBeingDragged = false;
+        checkDropLocation(event.pageX, event.pageY);
+      }
+    };
+
+    // Touch event listener to handle interactions with touch devices
+    pieceImageElement.addEventListener(
+      "touchstart",
+      (event) => {
         if (!PieceCompleted[pieceIndex]) {
-          PieceBeingDragged = true;
           pieceImageElement.style.transition = "all 0.1s ease-in-out";
-          movePiece(event.pageX, event.pageY);
+          movePiece(event.touches[0].pageX, event.touches[0].pageY);
           setTimeout(() => (pieceImageElement.style.transition = "none"), 100);
           pieceImageElement.style.zIndex = ++zIndex;
         }
-      };
-  
-      // Event listener for mouse movement over the puzzle piece element
-      pieceImageElement.onmousemove = (event) => {
-        if (PieceBeingDragged) {
-          movePiece(event.pageX, event.pageY);
-        }
-      };
-  
-      // Event handler for when the mouse leaves the puzzle piece area
-      pieceImageElement.onmouseleave = () => (PieceBeingDragged = false);
-      pieceImageElement.onmouseup = (event) => {
-        if (!PieceCompleted[pieceIndex]) {
-          PieceBeingDragged = false;
-          checkDropLocation(event.pageX, event.pageY);
-        }
-      };
-  
-      // Touch event listener to handle interactions with touch devices
-      pieceImageElement.addEventListener(
-        "touchstart",
-        (event) => {
-          if (!PieceCompleted[pieceIndex]) {
-            pieceImageElement.style.transition = "all 0.1s ease-in-out";
-            movePiece(event.touches[0].pageX, event.touches[0].pageY);
-            setTimeout(() => (pieceImageElement.style.transition = "none"), 100);
-            pieceImageElement.style.zIndex = ++zIndex;
-          }
-        },
-        { passive: true }
-      );
-  
-      // Add a touch event listener to the puzzle piece for the 'ontouchmove' event.
-      pieceImageElement.ontouchmove = (event) => {
-        event.preventDefault();
-        if (!PieceCompleted[pieceIndex]) {
-          movePiece(event.touches[0].pageX, event.touches[0].pageY);
-        }
-      };
-  
-      // When the touch interaction with the puzzle piece ends,
-      pieceImageElement.ontouchend = (event) => {
-        if (!PieceCompleted[pieceIndex]) {
-          // Determines whether the widget should be locked in place or not.
-          checkDropLocation(
-            event.changedTouches[0].pageX,
-            event.changedTouches[0].pageY
-          );
-        }
-      };
+      },
+      { passive: true }
+    );
+
+    // Add a touch event listener to the puzzle piece for the 'ontouchmove' event.
+    pieceImageElement.ontouchmove = (event) => {
+      event.preventDefault();
+      if (!PieceCompleted[pieceIndex]) {
+        movePiece(event.touches[0].pageX, event.touches[0].pageY);
+      }
+    };
+
+    // When the touch interaction with the puzzle piece ends,
+    pieceImageElement.ontouchend = (event) => {
+      if (!PieceCompleted[pieceIndex]) {
+        // Determines whether the widget should be locked in place or not.
+        checkDropLocation(
+          event.changedTouches[0].pageX,
+          event.changedTouches[0].pageY
+        );
+      }
+    };
   });
 };
-
 
 /* ------------------------  This part is related to shuffling puzzle pieces ---------------------- */
 
@@ -378,18 +377,24 @@ const getRandomNumber = (range) => Math.floor(Math.random() * range);
 const shufflePositions = [
   {
     // Example: puzzleBoard.width - puzzlePiece.width = 600 - 100 = 500. getRandomNumber(500) generates a random number between 0 and 499.
-    shuffleX: (puzzleBoard, puzzlePiece) => getRandomNumber(puzzleBoard.width - puzzlePiece.width),
+    shuffleX: (puzzleBoard, puzzlePiece) =>
+      getRandomNumber(puzzleBoard.width - puzzlePiece.width),
     // Example: puzzlePiece.height = 200 and puzzleBoard.height = 800, getRandomNumber(200) generates a random number between 0 and 199.
     // If the random number generated is 100, then `100 + 800 = 900`.
-    shuffleY: (puzzleBoard, puzzlePiece) => getRandomNumber(puzzlePiece.height) + puzzleBoard.height,
+    shuffleY: (puzzleBoard, puzzlePiece) =>
+      getRandomNumber(puzzlePiece.height) + puzzleBoard.height,
   },
   {
-    shuffleX: (puzzleBoard, puzzlePiece) => getRandomNumber(puzzlePiece.width) + puzzleBoard.width,
-    shuffleY: (puzzleBoard, puzzlePiece) => getRandomNumber(puzzleBoard.height - puzzlePiece.height),
+    shuffleX: (puzzleBoard, puzzlePiece) =>
+      getRandomNumber(puzzlePiece.width) + puzzleBoard.width,
+    shuffleY: (puzzleBoard, puzzlePiece) =>
+      getRandomNumber(puzzleBoard.height - puzzlePiece.height),
   },
   {
-    shuffleX: (puzzleBoard, puzzlePiece) => -getRandomNumber(puzzlePiece.width) - puzzlePiece.width,
-    shuffleY: (puzzleBoard, puzzlePiece) => getRandomNumber(puzzleBoard.height - puzzlePiece.height),
+    shuffleX: (puzzleBoard, puzzlePiece) =>
+      -getRandomNumber(puzzlePiece.width) - puzzlePiece.width,
+    shuffleY: (puzzleBoard, puzzlePiece) =>
+      getRandomNumber(puzzleBoard.height - puzzlePiece.height),
   },
 ];
 
@@ -399,10 +404,10 @@ const StartButton = document.getElementById("startButton");
 const PauseButton = document.getElementById("pauseButton");
 
 function updateWatch() {
-  const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
-  const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-  const s = String(seconds % 60).padStart(2, '0');
-  document.getElementById('watch').innerText = `${h}:${m}:${s}`;
+  const h = String(Math.floor(seconds / 3600)).padStart(2, "0");
+  const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+  const s = String(seconds % 60).padStart(2, "0");
+  document.getElementById("watch").innerText = `${h}:${m}:${s}`;
   seconds++;
 }
 
@@ -433,53 +438,63 @@ PauseButton.onclick = () => {
   pauseTimer();
 };
 
-
 /* ------------------------ Dragging piece to scroll document ---------------------- */
 
 let isDragging = false;
 let startX, startY, scrollLeft, scrollTop;
 
-document.addEventListener('mousedown', (e) => {
-    if (e.target === document.documentElement) {
-        isDragging = true;
-        startX = e.clientX;
-        startY = e.clientY;
-        scrollLeft = document.documentElement.scrollLeft;
-        scrollTop = document.documentElement.scrollTop;
-    }
+document.addEventListener("mousedown", (e) => {
+  if (e.target === document.documentElement) {
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    scrollLeft = document.documentElement.scrollLeft;
+    scrollTop = document.documentElement.scrollTop;
+  }
 });
 
-document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    
-    document.documentElement.scrollLeft = scrollLeft - dx;
-    document.documentElement.scrollTop = scrollTop - dy;
+document.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+
+  const dx = e.clientX - startX;
+  const dy = e.clientY - startY;
+
+  document.documentElement.scrollLeft = scrollLeft - dx;
+  document.documentElement.scrollTop = scrollTop - dy;
 });
 
-document.addEventListener('mouseup', () => {
-    isDragging = false;
+document.addEventListener("mouseup", () => {
+  isDragging = false;
 });
-
 
 /* ------------------------  This part is for continue or exit  ---------------------- */
 
 // Event listener for the continue  Game button
-document.getElementById("continueBtn").addEventListener("click", function() {
-    const puzzleContainerElement = document.getElementById("puzzle");
-      puzzleContainerElement.style.display = "block";
-  
-    // Hide the congratulations container
-    const congratulationsContainer = document.getElementById("congratulationsContainer");
-      congratulationsContainer.style.display = "none";
-  });
-  
-  // Event listener for the Exit Game button
-  document.getElementById("exitGameBtn").addEventListener("click", function() {
-  
-  });
+document.getElementById("continueBtn").addEventListener("click", function () {
+  const puzzleContainerElement = document.getElementById("puzzle");
+  puzzleContainerElement.style.display = "block";
 
+  // Hide the congratulations container
+  const congratulationsContainer = document.getElementById(
+    "congratulationsContainer"
+  );
+  congratulationsContainer.style.display = "none";
+});
 
+// Event listener for the Exit Game button
+document
+  .getElementById("exitGameBtn")
+  .addEventListener("click", function () {});
 
+/* ------------------------  This part is related to the error message display ---------------------- */
+
+// display the error message
+function displayErrorMessage(errorMessage) {
+  document.getElementById("errorMessageText").innerText = errorMessage;
+  document.getElementById("errorMessage").style.display = "flex";
+
+  // Hide the error message after 5 seconds
+  setTimeout(() => {
+    document.getElementById("errorMessage").style.display = "none";
+  }, 5000);
+}
