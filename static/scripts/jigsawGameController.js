@@ -433,3 +433,34 @@ PauseButton.onclick = () => {
   pauseTimer();
 };
 
+
+/* ------------------------ Dragging piece to scroll document ---------------------- */
+
+let isDragging = false;
+let startX, startY, scrollLeft, scrollTop;
+
+document.addEventListener('mousedown', (e) => {
+    if (e.target === document.documentElement) {
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        scrollLeft = document.documentElement.scrollLeft;
+        scrollTop = document.documentElement.scrollTop;
+    }
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    
+    document.documentElement.scrollLeft = scrollLeft - dx;
+    document.documentElement.scrollTop = scrollTop - dy;
+});
+
+document.addEventListener('mouseup', () => {
+    isDragging = false;
+});
+
+
