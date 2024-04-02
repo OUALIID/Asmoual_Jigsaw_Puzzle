@@ -10,7 +10,6 @@ imageInput.onchange = () => {
   startGame();
 };
 
-
 // Select the load image button and assign an event listener to load the image from URL
 const imageUrlInput = document.getElementById("imageUrlInput");
 const chooseImageLabel = document.querySelector('label[for="image"]');
@@ -43,7 +42,6 @@ imageUrlInput.addEventListener("keydown", (event) => {
   }
 });
 
-
 // Select all Levels buttons and assign event listeners to them
 const LevelLabe = document.querySelectorAll(".level-label");
 LevelLabe.forEach((button) => {
@@ -53,7 +51,6 @@ LevelLabe.forEach((button) => {
     startGame();
   });
 });
-
 
 const shuffleButton = document.getElementById("shuffle");
 shuffleButton.onclick = () => {
@@ -76,11 +73,10 @@ shuffleButton.onclick = () => {
   }
 };
 
-
 const button = document.getElementById("label-check");
 const menu = document.querySelector(".menu");
 
-button.addEventListener("click", function() {
+button.addEventListener("click", function () {
   if (!button.checked) {
     menu.style.transform = "translateX(100vw)";
   } else {
@@ -88,46 +84,46 @@ button.addEventListener("click", function() {
   }
 });
 
-
 const startGame = async () => {
-    resetTimer();
-  
+  resetTimer();
+
   const puzzleContainerElement = document.getElementById("puzzle");
-    // Prepare the space in which we will assemble the puzzle by making sure it is empty and ready for a new game.
-    while (puzzleContainerElement.firstChild) {
-      puzzleContainerElement.removeChild(puzzleContainerElement.lastChild);
-    }
-    if (!imageSource || !puzzleColumns || !puzzleWidth) return;
+  // Prepare the space in which we will assemble the puzzle by making sure it is empty and ready for a new game.
+  while (puzzleContainerElement.firstChild) {
+    puzzleContainerElement.removeChild(puzzleContainerElement.lastChild);
+  }
+  if (!imageSource || !puzzleColumns || !puzzleWidth) return;
 
-    const { board, tile, pieces } = await JigsawPuzzle(imageSource, puzzleColumns, puzzleWidth).catch(alert);
+  const { board, tile, pieces } = await JigsawPuzzle(
+    imageSource,
+    puzzleColumns,
+    puzzleWidth
+  ).catch(alert);
 
+  const customBgContainer = document.getElementById("customBgContainer");
+  const originalImage = document.getElementById("originalImage");
+  originalImage.src = imageSource;
 
-    const customBgContainer = document.getElementById('customBgContainer');
-    const originalImage = document.getElementById('originalImage');
-    originalImage.src = imageSource;
-  
-    originalImage.addEventListener('load', function() {
-      customBgContainer.style.width = originalImage.width + 'px';
-      customBgContainer.style.height = originalImage.height + 'px';
-    });
-  
-    puzzleContainerElement.style.width = `${board.width}px`;
-    puzzleContainerElement.style.height = `${board.height}px`;
-  
-    // Hide the image input and the input field for the image URL
-    const imageInput = document.getElementById("image");
-    const imageUrlInput = document.getElementById("imageUrlInput");
-    const orText = document.getElementById("orText");
-  
-  
-    imageInput.classList.add("notShown", "pointer-events-none");
-    imageUrlInput.classList.add("notShown", "pointer-events-none");
-    chooseImageLabel.classList.add("notShown", "pointer-events-none");
-    orText.classList.add("notShown");
-    /* pointer-events-none */
+  originalImage.addEventListener("load", function () {
+    customBgContainer.style.width = originalImage.width + "px";
+    customBgContainer.style.height = originalImage.height + "px";
+  });
 
+  puzzleContainerElement.style.width = `${board.width}px`;
+  puzzleContainerElement.style.height = `${board.height}px`;
 
-      // const pieces = [1, 2, 3, 4, 5];
+  // Hide the image input and the input field for the image URL
+  const imageInput = document.getElementById("image");
+  const imageUrlInput = document.getElementById("imageUrlInput");
+  const orText = document.getElementById("orText");
+
+  imageInput.classList.add("notShown", "pointer-events-none");
+  imageUrlInput.classList.add("notShown", "pointer-events-none");
+  chooseImageLabel.classList.add("notShown", "pointer-events-none");
+  orText.classList.add("notShown");
+  /* pointer-events-none */
+
+  // const pieces = [1, 2, 3, 4, 5];
   // Array(pieces.length) We create a new array with length equal to the number of puzzle pieces,
   // .fill(false) We fill each element of the array with the value `false`.like [false, false ...]
   const PieceCompleted = Array(pieces.length).fill(false);
@@ -146,8 +142,13 @@ const startGame = async () => {
       // Check if shuffling is enabled
       if (shuffleTiles) {
         const randomIndex = getRandomNumber(shufflePositions.length);
-        pieceImageElement.style.left = `${shufflePositions[randomIndex].shuffleX(board, tile)}px`;
-        pieceImageElement.style.top = `${shufflePositions[randomIndex].shuffleY(board, tile)}px`;
+        pieceImageElement.style.left = `${shufflePositions[
+          randomIndex
+        ].shuffleX(board, tile)}px`;
+        pieceImageElement.style.top = `${shufflePositions[randomIndex].shuffleY(
+          board,
+          tile
+        )}px`;
         pieceImageElement.style.zIndex = getRandomNumber(pieces.length) + 1;
       } else {
         // If shuffling is disabled, set the piece to its original position
@@ -166,39 +167,205 @@ const startGame = async () => {
     puzzleContainerElement.appendChild(pieceImageElement);
     pieceImageElement.animatePuzzlePiece();
 
-    
     // Define functions for moving and dropping puzzle pieces
     const movePiece = (pageX, pageY) => {
-        pieceImageElement.style.left = `${pageX - puzzlePiece.centerX - puzzleContainerElement.offsetLeft}px`;
-        pieceImageElement.style.top = `${pageY - puzzlePiece.centerY - puzzleContainerElement.offsetTop}px`;
-        };
+      pieceImageElement.style.left = `${
+        pageX - puzzlePiece.centerX - puzzleContainerElement.offsetLeft
+      }px`;
+      pieceImageElement.style.top = `${
+        pageY - puzzlePiece.centerY - puzzleContainerElement.offsetTop
+      }px`;
+    };
 
-        // This function calculates the position where a puzzle piece is dropped on the puzzle Board.
-        const checkDropLocation = (pageX, pageY) => {
-        moveCounter++;  // Increment move counter
+    // This function calculates the position where a puzzle piece is dropped on the puzzle Board.
+    const checkDropLocation = (pageX, pageY) => {
+      moveCounter++; // Increment move counter
 
-        // Calculate the exact position where the puzzle piece is dropped on the board, considering the board's position on the page.
-        const offsetX = pageX - puzzleContainerElement.offsetLeft;
-        const offsetY = pageY - puzzleContainerElement.offsetTop;
-        /* offsetX > 0: Ensures that the projection position is to the right of the left border of the puzzle container.
+      // Calculate the exact position where the puzzle piece is dropped on the board, considering the board's position on the page.
+      const offsetX = pageX - puzzleContainerElement.offsetLeft;
+      const offsetY = pageY - puzzleContainerElement.offsetTop;
+      /* offsetX > 0: Ensures that the projection position is to the right of the left border of the puzzle container.
             offsetX <board.width: Ensures that the drop position is to the left of the puzzle container's right border.
             offsetY > 0: Ensures that the projection position is below the top border of the puzzle container.
             offsetY <board.height: Ensures that the drop position is above the bottom border of the puzzle container.*/
-        if (offsetX > 0 && offsetX < board.width && offsetY > 0 && offsetY < board.height) {
-            // Prevent the pieces from going beyond the edges of the board
-            const snapOnLeft = (Math.trunc(offsetX / tile.width) - puzzlePiece.edges.left / 4) * tile.width;
-            const snapOnTop = (Math.trunc(offsetY / tile.height) - puzzlePiece.edges.top / 4) * tile.height;
-            // Check if the puzzle piece is placed correctly in its original position on the game board
-            if (snapOnLeft === puzzlePiece.leftOffset && snapOnTop === puzzlePiece.topOffset) {
-            PieceCompleted[pieceIndex] = true;
-            pieceImageElement.style.transition = "all 0.1s ease-in-out";
-            // Pin the puzzle piece in place on the game board,
-            pieceImageElement.style.left = `${snapOnLeft}px`;
-            pieceImageElement.style.top = `${snapOnTop}px`;
-            pieceImageElement.style.zIndex = 0;
-            setTimeout(() => (pieceImageElement.style.transition = "none"), 100);
+      if (
+        offsetX > 0 &&
+        offsetX < board.width &&
+        offsetY > 0 &&
+        offsetY < board.height
+      ) {
+        // Prevent the pieces from going beyond the edges of the board
+        const snapOnLeft =
+          (Math.trunc(offsetX / tile.width) - puzzlePiece.edges.left / 4) *
+          tile.width;
+        const snapOnTop =
+          (Math.trunc(offsetY / tile.height) - puzzlePiece.edges.top / 4) *
+          tile.height;
+        // Check if the puzzle piece is placed correctly in its original position on the game board
+        if (
+          snapOnLeft === puzzlePiece.leftOffset &&
+          snapOnTop === puzzlePiece.topOffset
+        ) {
+          PieceCompleted[pieceIndex] = true;
+          pieceImageElement.style.transition = "all 0.1s ease-in-out";
+          // Pin the puzzle piece in place on the game board,
+          pieceImageElement.style.left = `${snapOnLeft}px`;
+          pieceImageElement.style.top = `${snapOnTop}px`;
+          pieceImageElement.style.zIndex = 0;
+          setTimeout(() => (pieceImageElement.style.transition = "none"), 100);
+        }
+
+        // Check if all puzzle pieces are completed
+        if (PieceCompleted.every((tile) => tile)) {
+          // Calculate elapsed time
+          const elapsedTime = document.getElementById("watch").innerText;
+          // Convert elapsed time to seconds
+          const elapsedTimeInSeconds =
+            parseInt(elapsedTime.split(":")[0]) * 3600 +
+            parseInt(elapsedTime.split(":")[1]) * 60 +
+            parseInt(elapsedTime.split(":")[2]);
+
+          // Check if the timer is running
+          const timerRunning = elapsedTimeInSeconds > 0;
+
+          shuffleTiles = false;
+          shuffleButton.innerText = "Shuffle";
+          PieceCompleted.fill(false);
+          pauseTimer();
+
+          // Determine the score based on the elapsed time
+          let score = "";
+          let cupImageId = "";
+          if (elapsedTimeInSeconds < 60) {
+            // Less than 1 minute
+            score = "100%";
+            cupImageId = "goldenCup";
+          } else if (elapsedTimeInSeconds < 120) {
+            // Between 1 and 2 minutes
+            score = "75%";
+            cupImageId = "silverCup";
+          } else {
+            score = "50%";
+            cupImageId = "bronzeCup";
+          }
+
+          // Display the congratulations container and the appropriate cup image if the timer is running
+          if (timerRunning) {
+            // Hide all cup images first
+            document.getElementById("goldenCup").classList.add("hidden");
+            document.getElementById("silverCup").classList.add("hidden");
+            document.getElementById("bronzeCup").classList.add("hidden");
+            // Hide the puzzle board and all puzzle pieces
+            const puzzleContainerElement = document.getElementById("puzzle");
+            puzzleContainerElement.style.display = "none";
+            const congratulationsContainer = document.getElementById(
+              "congratulationsContainer"
+            );
+            congratulationsContainer.style.display = "block";
+            congratulationsContainer
+              .querySelector(`#${cupImageId}`)
+              .classList.remove("hidden");
+
+            // Show confetti
+            if (congratulationsContainer.style.display == "block") {
+              const jsConfetti = new JSConfetti();
+              jsConfetti.addConfetti({
+                confettiColors: [
+                  "#6E00FF",
+                  "#FF4500",
+                  "#00BFFF",
+                  "#FFD700",
+                  "#8A2BE2",
+                  "#32CD32",
+                ],
+              });
             }
 
-            
-};
+            // Update the content inside the congratulationsContainer
+            document.getElementById(
+              "elapsedTimeText"
+            ).innerText = `Time: ${elapsedTime}`;
+            document.getElementById("scoreText").innerText = `Score: ${score}`;
+            document.getElementById(
+              "movesText"
+            ).innerText = `Moves: ${moveCounter}`;
+            document.getElementById("elapsedTimeText")
+              .classList.remove("hidden");
+            document.getElementById("scoreText").classList.remove("hidden");
+            document.getElementById("movesText").classList.remove("hidden");
+          }
 
+          resetTimer();
+          moveCounter = 0;
+        }
+      }
+    };
+
+
+/* ------------------------ This part is related to mouse and touch events ---------------------- */
+
+    // mousedown event listener to drag a puzzle piece
+    pieceImageElement.onmousedown = (event) => {
+        event.preventDefault();
+        // Checks if the current puzzle piece is not yet complete.
+        if (!PieceCompleted[pieceIndex]) {
+          PieceBeingDragged = true;
+          pieceImageElement.style.transition = "all 0.1s ease-in-out";
+          movePiece(event.pageX, event.pageY);
+          setTimeout(() => (pieceImageElement.style.transition = "none"), 100);
+          pieceImageElement.style.zIndex = ++zIndex;
+        }
+      };
+  
+      // Event listener for mouse movement over the puzzle piece element
+      pieceImageElement.onmousemove = (event) => {
+        if (PieceBeingDragged) {
+          movePiece(event.pageX, event.pageY);
+        }
+      };
+  
+      // Event handler for when the mouse leaves the puzzle piece area
+      pieceImageElement.onmouseleave = () => (PieceBeingDragged = false);
+      pieceImageElement.onmouseup = (event) => {
+        if (!PieceCompleted[pieceIndex]) {
+          PieceBeingDragged = false;
+          checkDropLocation(event.pageX, event.pageY);
+        }
+      };
+  
+      // Touch event listener to handle interactions with touch devices
+      pieceImageElement.addEventListener(
+        "touchstart",
+        (event) => {
+          if (!PieceCompleted[pieceIndex]) {
+            pieceImageElement.style.transition = "all 0.1s ease-in-out";
+            movePiece(event.touches[0].pageX, event.touches[0].pageY);
+            setTimeout(() => (pieceImageElement.style.transition = "none"), 100);
+            pieceImageElement.style.zIndex = ++zIndex;
+          }
+        },
+        { passive: true }
+      );
+  
+      // Add a touch event listener to the puzzle piece for the 'ontouchmove' event.
+      pieceImageElement.ontouchmove = (event) => {
+        event.preventDefault();
+        if (!PieceCompleted[pieceIndex]) {
+          movePiece(event.touches[0].pageX, event.touches[0].pageY);
+        }
+      };
+  
+      // When the touch interaction with the puzzle piece ends,
+      pieceImageElement.ontouchend = (event) => {
+        if (!PieceCompleted[pieceIndex]) {
+          // Determines whether the widget should be locked in place or not.
+          checkDropLocation(
+            event.changedTouches[0].pageX,
+            event.changedTouches[0].pageY
+          );
+        }
+      };
+
+
+  });
+};
