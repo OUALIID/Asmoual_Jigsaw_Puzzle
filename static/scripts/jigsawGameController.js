@@ -365,7 +365,31 @@ const startGame = async () => {
           );
         }
       };
-
-
   });
 };
+
+
+/* ------------------------  This part is related to shuffling puzzle pieces ---------------------- */
+
+// Function to generate a random integer within a specified range
+const getRandomNumber = (range) => Math.floor(Math.random() * range);
+
+// Array of shuffle positions used when shuffling tiles
+const shufflePositions = [
+  {
+    // Example: puzzleBoard.width - puzzlePiece.width = 600 - 100 = 500. getRandomNumber(500) generates a random number between 0 and 499.
+    shuffleX: (puzzleBoard, puzzlePiece) => getRandomNumber(puzzleBoard.width - puzzlePiece.width),
+    // Example: puzzlePiece.height = 200 and puzzleBoard.height = 800, getRandomNumber(200) generates a random number between 0 and 199.
+    // If the random number generated is 100, then `100 + 800 = 900`.
+    shuffleY: (puzzleBoard, puzzlePiece) => getRandomNumber(puzzlePiece.height) + puzzleBoard.height,
+  },
+  {
+    shuffleX: (puzzleBoard, puzzlePiece) => getRandomNumber(puzzlePiece.width) + puzzleBoard.width,
+    shuffleY: (puzzleBoard, puzzlePiece) => getRandomNumber(puzzleBoard.height - puzzlePiece.height),
+  },
+  {
+    shuffleX: (puzzleBoard, puzzlePiece) => -getRandomNumber(puzzlePiece.width) - puzzlePiece.width,
+    shuffleY: (puzzleBoard, puzzlePiece) => getRandomNumber(puzzleBoard.height - puzzlePiece.height),
+  },
+];
+
