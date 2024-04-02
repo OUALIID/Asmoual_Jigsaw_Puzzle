@@ -76,3 +76,55 @@ shuffleButton.onclick = () => {
   }
 };
 
+
+const button = document.getElementById("label-check");
+const menu = document.querySelector(".menu");
+
+button.addEventListener("click", function() {
+  if (!button.checked) {
+    menu.style.transform = "translateX(100vw)";
+  } else {
+    menu.style.transform = "translateX(0vw)";
+  }
+});
+
+
+const startGame = async () => {
+    resetTimer();
+  
+  const puzzleContainerElement = document.getElementById("puzzle");
+    // Prepare the space in which we will assemble the puzzle by making sure it is empty and ready for a new game.
+    while (puzzleContainerElement.firstChild) {
+      puzzleContainerElement.removeChild(puzzleContainerElement.lastChild);
+    }
+    if (!imageSource || !puzzleColumns || !puzzleWidth) return;
+
+    const { board, tile, pieces } = await JigsawPuzzle(imageSource, puzzleColumns, puzzleWidth).catch(alert);
+
+
+    const customBgContainer = document.getElementById('customBgContainer');
+    const originalImage = document.getElementById('originalImage');
+    originalImage.src = imageSource;
+  
+    originalImage.addEventListener('load', function() {
+      customBgContainer.style.width = originalImage.width + 'px';
+      customBgContainer.style.height = originalImage.height + 'px';
+    });
+  
+    puzzleContainerElement.style.width = `${board.width}px`;
+    puzzleContainerElement.style.height = `${board.height}px`;
+  
+    // Hide the image input and the input field for the image URL
+    const imageInput = document.getElementById("image");
+    const imageUrlInput = document.getElementById("imageUrlInput");
+    const orText = document.getElementById("orText");
+  
+  
+    imageInput.classList.add("notShown", "pointer-events-none");
+    imageUrlInput.classList.add("notShown", "pointer-events-none");
+    chooseImageLabel.classList.add("notShown", "pointer-events-none");
+    orText.classList.add("notShown");
+    /* pointer-events-none */
+    
+};
+
