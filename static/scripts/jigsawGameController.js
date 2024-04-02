@@ -1,7 +1,7 @@
 let imageSource = "";
 let puzzleColumns = "3";
 let puzzleWidth = "300";
-
+let shuffleTiles = false;
 
 // Add event listener to image input for when a new image is selected
 const imageInput = document.getElementById("image");
@@ -53,4 +53,26 @@ LevelLabe.forEach((button) => {
     startGame();
   });
 });
+
+
+const shuffleButton = document.getElementById("shuffle");
+shuffleButton.onclick = () => {
+  shuffleTiles = !shuffleTiles;
+  shuffleButton.innerText = shuffleTiles ? "Solve" : "Shuffle";
+
+  // Start the timer when shuffle button is pressed
+  if (shuffleTiles && imageSource) {
+    startTimer();
+  } else {
+    resetTimer();
+    pauseTimer();
+  }
+
+  // Select all puzzle pieces on the document body with the class name "piece"
+  const puzzlePieces = document.body.getElementsByClassName("piece");
+  for (let pieceIndex = 0; pieceIndex < puzzlePieces.length; pieceIndex++) {
+    // Call the animatePuzzlePiece method on each puzzle piece to animate it
+    puzzlePieces[pieceIndex].animatePuzzlePiece();
+  }
+};
 
