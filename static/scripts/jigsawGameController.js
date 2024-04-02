@@ -393,3 +393,43 @@ const shufflePositions = [
   },
 ];
 
+/* ------------------------  This part is related to timer control ---------------------- */
+
+const StartButton = document.getElementById("startButton");
+const PauseButton = document.getElementById("pauseButton");
+
+function updateWatch() {
+  const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
+  const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+  const s = String(seconds % 60).padStart(2, '0');
+  document.getElementById('watch').innerText = `${h}:${m}:${s}`;
+  seconds++;
+}
+
+const startTimer = () => {
+  if (timerInterval === null && imageSource) {
+    updateWatch();
+    timerInterval = setInterval(updateWatch, 1000);
+  }
+};
+
+const pauseTimer = () => {
+  clearInterval(timerInterval);
+  timerInterval = null;
+};
+
+const resetTimer = () => {
+  clearInterval(timerInterval);
+  timerInterval = null;
+  seconds = 0;
+  updateWatch();
+};
+
+StartButton.onclick = () => {
+  startTimer();
+};
+
+PauseButton.onclick = () => {
+  pauseTimer();
+};
+
