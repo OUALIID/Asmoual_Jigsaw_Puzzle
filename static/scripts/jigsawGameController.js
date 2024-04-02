@@ -1,4 +1,7 @@
 let imageSource = "";
+let puzzleColumns = "3";
+let puzzleWidth = "300";
+
 
 // Add event listener to image input for when a new image is selected
 const imageInput = document.getElementById("image");
@@ -38,5 +41,16 @@ imageUrlInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     loadImage();
   }
+});
+
+
+// Select all Levels buttons and assign event listeners to them
+const LevelLabe = document.querySelectorAll(".level-label");
+LevelLabe.forEach((button) => {
+  button.addEventListener("click", () => {
+    puzzleColumns = button.dataset.cols;
+    puzzleWidth = button.dataset.width;
+    startGame();
+  });
 });
 
