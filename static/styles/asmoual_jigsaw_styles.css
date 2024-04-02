@@ -1,0 +1,34 @@
+/* Hide the scrollbars visually */
+body,
+html {
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+    /* For Internet Explorer and Edge */
+    background-color: #120018;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+    /* For Chrome, Safari, and Opera */
+}
+
+* {
+    user-select: none;
+}
+
+#label-check:checked+.block .line1 {
+    transform: rotate(37deg) scaleX(.5) translate(33px, -3.3px);
+    border-radius: 50px 0 50px 0;
+}
+
+#label-check:checked+.block .line2 {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    width: 45px;
+}
+
+#label-check:checked+.block .line3 {
+    transform: rotate(-39deg) scaleX(.5) translate(32px, 4px);
+    border-radius: 50px 50px 0 0;
+}
