@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASMOUAL JIGSAW</title>
     <link rel="stylesheet" href="../static/styles/asmoual_jigsaw_styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+
 
 <body>
 
@@ -43,6 +45,41 @@
             </div>
         </div>
 
+        <!-- Level Selection -->
+        <div class="level-selection mt-9">
+            <h2 class="col-start-2 col-end-4 text-center text-2xl" style="font-family: Moul, serif;">DIFFICULTY LEVELS
+            </h2>
+            <fieldset class="grid gap-3 grid-cols-3 grid-rows-3 p-8 px-10">
+                <!-- Level Radio Buttons -->
+                <input name="switch" id="level1" type="radio" checked class="pres hidden">
+                <label for="level1" class="level-label" data-cols="3" data-width="300">Level 1</label>
+
+                <input name="switch" id="level2" type="radio" class="pres hidden">
+                <label for="level2" class="level-label" data-cols="4" data-width="400">Level 2</label>
+
+                <input name="switch" id="level3" type="radio" class="pres hidden">
+                <label for="level3" class="level-label" data-cols="5" data-width="500">Level 3</label>
+
+                <input name="switch" id="level4" type="radio" class="pres hidden">
+                <label for="level4" class="level-label" data-cols="6" data-width="600">Level 4</label>
+
+                <input name="switch" id="level5" type="radio" class="pres hidden">
+                <label for="level5" class="level-label" data-cols="7" data-width="700">Level 5</label>
+
+                <input name="switch" id="level6" type="radio" class="pres hidden">
+                <label for="level6" class="level-label" data-cols="8" data-width="800">Level 6</label>
+
+                <input name="switch" id="level7" type="radio" class="pres hidden">
+                <label for="level7" class="level-label" data-cols="9" data-width="900">Level 7</label>
+
+                <input name="switch" id="level8" type="radio" class="pres hidden">
+                <label for="level8" class="level-label" data-cols="10" data-width="1000">Level 8</label>
+
+                <input name="switch" id="level9" type="radio" class="pres hidden">
+                <label for="level9" class="level-label" data-cols="11" data-width="1100">Level 9</label>
+            </fieldset>
+        </div>
+    </div>
 </body>
 
 </html>
