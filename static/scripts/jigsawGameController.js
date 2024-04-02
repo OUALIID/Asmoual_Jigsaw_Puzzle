@@ -464,3 +464,22 @@ document.addEventListener('mouseup', () => {
 });
 
 
+/* ------------------------  This part is for continue or exit  ---------------------- */
+
+// Event listener for the continue  Game button
+document.getElementById("continueBtn").addEventListener("click", function() {
+    const puzzleContainerElement = document.getElementById("puzzle");
+      puzzleContainerElement.style.display = "block";
+  
+    // Hide the congratulations container
+    const congratulationsContainer = document.getElementById("congratulationsContainer");
+      congratulationsContainer.style.display = "none";
+  });
+  
+  // Event listener for the Exit Game button
+  document.getElementById("exitGameBtn").addEventListener("click", function() {
+  
+  });
+
+
+
