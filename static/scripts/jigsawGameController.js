@@ -166,5 +166,39 @@ const startGame = async () => {
     puzzleContainerElement.appendChild(pieceImageElement);
     pieceImageElement.animatePuzzlePiece();
 
+    
+    // Define functions for moving and dropping puzzle pieces
+    const movePiece = (pageX, pageY) => {
+        pieceImageElement.style.left = `${pageX - puzzlePiece.centerX - puzzleContainerElement.offsetLeft}px`;
+        pieceImageElement.style.top = `${pageY - puzzlePiece.centerY - puzzleContainerElement.offsetTop}px`;
+        };
+
+        // This function calculates the position where a puzzle piece is dropped on the puzzle Board.
+        const checkDropLocation = (pageX, pageY) => {
+        moveCounter++;  // Increment move counter
+
+        // Calculate the exact position where the puzzle piece is dropped on the board, considering the board's position on the page.
+        const offsetX = pageX - puzzleContainerElement.offsetLeft;
+        const offsetY = pageY - puzzleContainerElement.offsetTop;
+        /* offsetX > 0: Ensures that the projection position is to the right of the left border of the puzzle container.
+            offsetX <board.width: Ensures that the drop position is to the left of the puzzle container's right border.
+            offsetY > 0: Ensures that the projection position is below the top border of the puzzle container.
+            offsetY <board.height: Ensures that the drop position is above the bottom border of the puzzle container.*/
+        if (offsetX > 0 && offsetX < board.width && offsetY > 0 && offsetY < board.height) {
+            // Prevent the pieces from going beyond the edges of the board
+            const snapOnLeft = (Math.trunc(offsetX / tile.width) - puzzlePiece.edges.left / 4) * tile.width;
+            const snapOnTop = (Math.trunc(offsetY / tile.height) - puzzlePiece.edges.top / 4) * tile.height;
+            // Check if the puzzle piece is placed correctly in its original position on the game board
+            if (snapOnLeft === puzzlePiece.leftOffset && snapOnTop === puzzlePiece.topOffset) {
+            PieceCompleted[pieceIndex] = true;
+            pieceImageElement.style.transition = "all 0.1s ease-in-out";
+            // Pin the puzzle piece in place on the game board,
+            pieceImageElement.style.left = `${snapOnLeft}px`;
+            pieceImageElement.style.top = `${snapOnTop}px`;
+            pieceImageElement.style.zIndex = 0;
+            setTimeout(() => (pieceImageElement.style.transition = "none"), 100);
+            }
+
+            
 };
 
