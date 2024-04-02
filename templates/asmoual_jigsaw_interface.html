@@ -99,19 +99,29 @@
                     class="control-button w-9 h-6 cursor-pointer">
             </div>
         </div>
-        
+
         <!-- help and exit Buttons-->
         <div class="flex justify-between mp-2">
             <!-- Help Button -->
             <div class="flex items-center">
-                <img src="../static/game_assets/game_images/help.svg" id="HelpButton" class="w-20 h-16 cursor-pointer hover:opacity-70">
+                <img src="../static/game_assets/game_images/help.svg" id="HelpButton"
+                    class="w-20 h-16 cursor-pointer hover:opacity-70">
             </div>
 
             <!-- Exit Button -->
             <div class="flex items-center">
-                <img src="../static/game_assets/game_images/exit.svg" id="ExitButton" class="w-20 h-16 cursor-pointer hover:opacity-70">
+                <img src="../static/game_assets/game_images/exit.svg" id="ExitButton"
+                    class="w-20 h-16 cursor-pointer hover:opacity-70">
             </div>
         </div>
+    </div>
+
+    <!-- error Message -->
+    <div id="errorMessage" class="relative bg-red-500 rounded-lg p-3 w-[25rem] mx-auto"
+        style="margin-top: 1%; display: none;">
+        <img src="../static/game_assets/game_images/error_icon.svg" alt="Harba Icon"
+            class="absolute top-[9px] left-1 w-8 h-6">
+        <div id="errorMessageText" class="ml-8 font-medium text-white text-sm"></div>
     </div>
 </body>
 
