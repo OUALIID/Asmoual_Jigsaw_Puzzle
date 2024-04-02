@@ -89,3 +89,19 @@ button.addEventListener("click", function() {
 });
 
 
+const startGame = async () => {
+    resetTimer();
+  
+  const puzzleContainerElement = document.getElementById("puzzle");
+    // Prepare the space in which we will assemble the puzzle by making sure it is empty and ready for a new game.
+    while (puzzleContainerElement.firstChild) {
+      puzzleContainerElement.removeChild(puzzleContainerElement.lastChild);
+    }
+    if (!imageSource || !puzzleColumns || !puzzleWidth) return;
+
+    const { board, tile, pieces } = await JigsawPuzzle(imageSource, puzzleColumns, puzzleWidth).catch(alert);
+
+
+    
+};
+
