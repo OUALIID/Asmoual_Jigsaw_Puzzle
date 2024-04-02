@@ -102,6 +102,29 @@ const startGame = async () => {
     const { board, tile, pieces } = await JigsawPuzzle(imageSource, puzzleColumns, puzzleWidth).catch(alert);
 
 
+    const customBgContainer = document.getElementById('customBgContainer');
+    const originalImage = document.getElementById('originalImage');
+    originalImage.src = imageSource;
+  
+    originalImage.addEventListener('load', function() {
+      customBgContainer.style.width = originalImage.width + 'px';
+      customBgContainer.style.height = originalImage.height + 'px';
+    });
+  
+    puzzleContainerElement.style.width = `${board.width}px`;
+    puzzleContainerElement.style.height = `${board.height}px`;
+  
+    // Hide the image input and the input field for the image URL
+    const imageInput = document.getElementById("image");
+    const imageUrlInput = document.getElementById("imageUrlInput");
+    const orText = document.getElementById("orText");
+  
+  
+    imageInput.classList.add("notShown", "pointer-events-none");
+    imageUrlInput.classList.add("notShown", "pointer-events-none");
+    chooseImageLabel.classList.add("notShown", "pointer-events-none");
+    orText.classList.add("notShown");
+    /* pointer-events-none */
     
 };
 
