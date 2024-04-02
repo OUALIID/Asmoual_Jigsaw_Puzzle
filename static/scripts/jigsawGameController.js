@@ -76,3 +76,16 @@ shuffleButton.onclick = () => {
   }
 };
 
+
+const button = document.getElementById("label-check");
+const menu = document.querySelector(".menu");
+
+button.addEventListener("click", function() {
+  if (!button.checked) {
+    menu.style.transform = "translateX(100vw)";
+  } else {
+    menu.style.transform = "translateX(0vw)";
+  }
+});
+
+
