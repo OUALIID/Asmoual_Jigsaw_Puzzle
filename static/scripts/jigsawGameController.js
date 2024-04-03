@@ -1,7 +1,12 @@
+import JigsawPuzzle from "./generateJigsawLogic.js";
+
 let imageSource = "";
 let puzzleColumns = "3";
 let puzzleWidth = "300";
 let shuffleTiles = false;
+let timerInterval = null;
+let moveCounter = 0;
+let seconds = 0;
 
 // Add event listener to image input for when a new image is selected
 const imageInput = document.getElementById("image");
@@ -302,7 +307,7 @@ const startGame = async () => {
       }
     };
 
-/* ------------------------ This part is related to mouse and touch events ---------------------- */
+    /* ------------------------ This part is related to mouse and touch events ---------------------- */
 
     // mousedown event listener to drag a puzzle piece
     pieceImageElement.onmousedown = (event) => {
