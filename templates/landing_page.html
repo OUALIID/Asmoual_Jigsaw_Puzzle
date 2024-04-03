@@ -18,9 +18,9 @@
         <!-- Header -->
         <header
             class='flex flex-col max-w-screen min-h-screen max-h-screen overflow-x-clip relative bg-[#F9ECFE] text-[#28003E] '>
-            <div
-                class='absolute -right-[450px] lg:-right-72 2xl:-right-96  h-[100%]  top-0 flex max-w-screen overflow-x-clip z-0 '>
-                <img src="../static/game_assets/teaser_images/hero_images/Background_image.png" class=" object-cover " width="3383" height="1495" />
+            <div class='absolute -right-[450px] lg:-right-72 2xl:-right-96  h-[100%]  top-0 flex max-w-screen overflow-x-clip z-0 '>
+                <img src="../static/game_assets/teaser_images/hero_images/Background_image.png" class=" object-cover "
+                    width="3383" height="1495" />
             </div>
             <div class='absolute left-4 top-4 max-h-screen flex max-w-screen overflow-x-clip z-0 '>
                 <img src="../static/game_assets/teaser_images/hero_images/logo_name.png" width="1696" height="888"
@@ -37,11 +37,40 @@
                 </p>
                 <div
                     class='flex w-[65%] text-sm lg:text-xl 2xl:text-2xl gap-2 flex-row items-center justify-start mt-4 2xl:mt-12 ml-4 2xl:ml-8'>
-                    <button class='flex px-4 py-2 border border-[#28003e61] font-semibold rounded-lg hover:bg-[#6E00FF] hover:text-white'>Sign Up</button>
-                    <button class='flex px-4 py-2 bg-[#6E00FF] text-white font-semibold rounded-lg hover:bg-[#f5e6fd] hover:text-[#28003E] hover:border hover:border-[#28003e61]'>Login</button>
+                    <button
+                        class='flex px-4 py-2 border border-[#28003e61] font-semibold rounded-lg hover:bg-[#6E00FF] hover:text-white'>Sign Up</button>
+                    <button
+                        class='flex px-4 py-2 bg-[#6E00FF] text-white font-semibold rounded-lg hover:bg-[#f5e6fd] hover:text-[#28003E] hover:border hover:border-[#28003e61]'>Login</button>
                 </div>
             </div>
         </header>
+
+        <!-- Section 1: Title and Video -->
+        <section class='mt-10 flex flex-col w-full'>
+            <!-- Two-column layout for tablets and computers -->
+            <div class="flex flex-col md:flex-row items-center justify-center h-full">
+                <!-- Left Column for Text -->
+                <div class="md:w-1/2 flex flex-col items-center justify-center">
+                    <h2 class='text-center text-xl md:text-2xl lg:text-4xl font-medium'>Start Playing in a Simple Way
+                    </h2>
+                    <p class='text-center text-pretty w-[90%] sm:w-[80%] md:w-[92%] lg:w-[85%] xl:w-[80%] 2xl:w-[50%] font-normal text-xs sm:text-base lg:text-lg mt-4 md:mt-8 lg:mt-8 2xl:mt-12'>
+                        You can effortlessly piece together captivating puzzles with Asmoual Jigsaw, a unique game
+                        designed for
+                        puzzle enthusiasts. With its intuitive gameplay and stunning visuals, solving puzzles has never
+                        been this
+                        enjoyable. Dive into the world of Asmoual Jigsaw and challenge your problem-solving skills
+                        today!
+                    </p>
+                </div>
+                <!-- Right Column for Video -->
+                <div class="md:w-1/2 flex justify-center items-center lg:mt-12 mt-8 2xl:mt-16">
+                    <video src="../static/game_assets/teaser_images/hero_images/playgame.mp4" type="video/mp4" autoplay muted loop
+                        class="w-[80%] mx-auto md:h-[8%] rounded-[1rem]">
+                    </video>
+                </div>
+            </div>
+        </section>
+
 
 
     </div>
