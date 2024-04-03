@@ -7,6 +7,7 @@
     <title>ASMOUAL JIGSAW</title>
     <link rel="stylesheet" href="../static/styles/asmoual_jigsaw_styles.css">
     <script type="module" src="../static/scripts/jigsawGameController.js" defer></script>
+    <script type="module" src="../static/scripts/detectMobileOrientation.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@0.8.0/dist/js-confetti.browser.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -175,6 +176,10 @@
                 style="font-family: Moul, serif;">Continue</button>
         </div>
     </div>
+
+    <!-- GIF for Mobile Users -->
+    <img id="mobileGif" src="../static/game_assets/game_images/rotate-phone.gif" alt="Turning Phone GIF" class="fixed top-0 left-0 w-full h-full object-cover z-[1000000]" style="display:none;">
+
 </body>
 
 </html>
