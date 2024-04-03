@@ -99,11 +99,7 @@ const startGame = async () => {
   }
   if (!imageSource || !puzzleColumns || !puzzleWidth) return;
 
-  const { board, tile, pieces } = await JigsawPuzzle(
-    imageSource,
-    puzzleColumns,
-    puzzleWidth
-  ).catch(alert);
+  const { board, tile, pieces } = await JigsawPuzzle( imageSource, puzzleColumns, puzzleWidth).catch(alert);
 
   const customBgContainer = document.getElementById("customBgContainer");
   const originalImage = document.getElementById("originalImage");
@@ -147,13 +143,8 @@ const startGame = async () => {
       // Check if shuffling is enabled
       if (shuffleTiles) {
         const randomIndex = getRandomNumber(shufflePositions.length);
-        pieceImageElement.style.left = `${shufflePositions[
-          randomIndex
-        ].shuffleX(board, tile)}px`;
-        pieceImageElement.style.top = `${shufflePositions[randomIndex].shuffleY(
-          board,
-          tile
-        )}px`;
+        pieceImageElement.style.left = `${shufflePositions[randomIndex].shuffleX(board, tile)}px`;
+        pieceImageElement.style.top = `${shufflePositions[randomIndex].shuffleY(board,tile)}px`;
         pieceImageElement.style.zIndex = getRandomNumber(pieces.length) + 1;
       } else {
         // If shuffling is disabled, set the piece to its original position
@@ -174,12 +165,8 @@ const startGame = async () => {
 
     // Define functions for moving and dropping puzzle pieces
     const movePiece = (pageX, pageY) => {
-      pieceImageElement.style.left = `${
-        pageX - puzzlePiece.centerX - puzzleContainerElement.offsetLeft
-      }px`;
-      pieceImageElement.style.top = `${
-        pageY - puzzlePiece.centerY - puzzleContainerElement.offsetTop
-      }px`;
+      pieceImageElement.style.left = `${pageX - puzzlePiece.centerX - puzzleContainerElement.offsetLeft}px`;
+      pieceImageElement.style.top = `${pageY - puzzlePiece.centerY - puzzleContainerElement.offsetTop}px`;
     };
 
     // This function calculates the position where a puzzle piece is dropped on the puzzle Board.
@@ -193,24 +180,12 @@ const startGame = async () => {
             offsetX <board.width: Ensures that the drop position is to the left of the puzzle container's right border.
             offsetY > 0: Ensures that the projection position is below the top border of the puzzle container.
             offsetY <board.height: Ensures that the drop position is above the bottom border of the puzzle container.*/
-      if (
-        offsetX > 0 &&
-        offsetX < board.width &&
-        offsetY > 0 &&
-        offsetY < board.height
-      ) {
+      if (offsetX > 0 && offsetX < board.width && offsetY > 0 && offsetY < board.height) {
         // Prevent the pieces from going beyond the edges of the board
-        const snapOnLeft =
-          (Math.trunc(offsetX / tile.width) - puzzlePiece.edges.left / 4) *
-          tile.width;
-        const snapOnTop =
-          (Math.trunc(offsetY / tile.height) - puzzlePiece.edges.top / 4) *
-          tile.height;
+        const snapOnLeft = (Math.trunc(offsetX / tile.width) - puzzlePiece.edges.left / 4) * tile.width;
+        const snapOnTop = (Math.trunc(offsetY / tile.height) - puzzlePiece.edges.top / 4) * tile.height;
         // Check if the puzzle piece is placed correctly in its original position on the game board
-        if (
-          snapOnLeft === puzzlePiece.leftOffset &&
-          snapOnTop === puzzlePiece.topOffset
-        ) {
+        if (snapOnLeft === puzzlePiece.leftOffset && snapOnTop === puzzlePiece.topOffset) {
           PieceCompleted[pieceIndex] = true;
           pieceImageElement.style.transition = "all 0.1s ease-in-out";
           // Pin the puzzle piece in place on the game board,
@@ -276,31 +251,19 @@ const startGame = async () => {
               const jsConfetti = new JSConfetti();
               jsConfetti.addConfetti({
                 confettiColors: [
-                  "#6E00FF",
-                  "#FF4500",
-                  "#00BFFF",
-                  "#FFD700",
-                  "#8A2BE2",
-                  "#32CD32",
+                    "#6E00FF","#FF4500","#00BFFF","#FFD700","#8A2BE2","#32CD32",
                 ],
               });
             }
 
             // Update the content inside the congratulationsContainer
-            document.getElementById(
-              "elapsedTimeText"
-            ).innerText = `Time: ${elapsedTime}`;
+            document.getElementById("elapsedTimeText").innerText = `Time: ${elapsedTime}`;
             document.getElementById("scoreText").innerText = `Score: ${score}`;
-            document.getElementById(
-              "movesText"
-            ).innerText = `Moves: ${moveCounter}`;
-            document
-              .getElementById("elapsedTimeText")
-              .classList.remove("hidden");
+            document.getElementById("movesText").innerText = `Moves: ${moveCounter}`;
+            document.getElementById("elapsedTimeText").classList.remove("hidden");
             document.getElementById("scoreText").classList.remove("hidden");
             document.getElementById("movesText").classList.remove("hidden");
           }
-
           resetTimer();
           moveCounter = 0;
         }
