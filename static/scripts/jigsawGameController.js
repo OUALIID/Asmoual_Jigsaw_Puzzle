@@ -65,6 +65,8 @@ shuffleButton.onclick = () => {
   // Start the timer when shuffle button is pressed
   if (shuffleTiles && imageSource) {
     startTimer();
+    menu.style.transform = "translateX(100vw)";
+    button.checked = false;
   } else {
     resetTimer();
     pauseTimer();
@@ -229,6 +231,13 @@ const startGame = async () => {
             cupImageId = "bronzeCup";
           }
 
+          // Hide the Menu Container and Hamburger Icon
+          const menuContainer = document.querySelector('.menu');
+          const hamburgerIcon = document.querySelector('.hamburger');
+          menuContainer.style.display = "none";
+          hamburgerIcon.style.display = "none";
+
+
           // Display the congratulations container and the appropriate cup image if the timer is running
           if (timerRunning) {
             // Hide all cup images first
@@ -242,9 +251,7 @@ const startGame = async () => {
               "congratulationsContainer"
             );
             congratulationsContainer.style.display = "block";
-            congratulationsContainer
-              .querySelector(`#${cupImageId}`)
-              .classList.remove("hidden");
+            congratulationsContainer.querySelector(`#${cupImageId}`).classList.remove("hidden");
 
             // Show confetti
             if (congratulationsContainer.style.display == "block") {
@@ -447,11 +454,35 @@ document.getElementById("continueBtn").addEventListener("click", function () {
     "congratulationsContainer"
   );
   congratulationsContainer.style.display = "none";
+
+  // Show the Menu Container and Hamburger Icon
+  const menuContainer = document.querySelector('.menu');
+  const hamburgerIcon = document.querySelector('.hamburger');
+  menuContainer.style.display = "block";
+  hamburgerIcon.style.display = "block";
+  menu.style.transform = "translateX(0vw)";
+  button.checked = true;
 });
+
 
 // Event listener for the Exit Game button
 document.getElementById("exitGameBtn").addEventListener("click", function () {
   window.location.href = "../templates/landing_page.html";
+});
+
+// Event listener for the ExitButton to redirect to the landing page
+document.getElementById("ExitButton").addEventListener("click", function () {
+  window.location.href = "../templates/landing_page.html";
+});
+
+// Event listener for the HelpButton to toggle the visibility of the msgerr div
+document.getElementById("HelpButton").addEventListener("click", function () {
+  var msgerr = document.getElementById("msgerr");
+  if (msgerr.classList.contains("hidden")) {
+      msgerr.classList.remove("hidden");
+  } else {
+      msgerr.classList.add("hidden");
+  }
 });
 
 /* ------------------------  This part is related to the error message display ---------------------- */
@@ -466,3 +497,5 @@ function displayErrorMessage(errorMessage) {
     document.getElementById("errorMessage").style.display = "none";
   }, 5000);
 }
+
+
