@@ -450,9 +450,9 @@ document.getElementById("continueBtn").addEventListener("click", function () {
 });
 
 // Event listener for the Exit Game button
-document
-  .getElementById("exitGameBtn")
-  .addEventListener("click", function () {});
+document.getElementById("exitGameBtn").addEventListener("click", function () {
+  window.location.href = "../templates/landing_page.html";
+});
 
 /* ------------------------  This part is related to the error message display ---------------------- */
 
