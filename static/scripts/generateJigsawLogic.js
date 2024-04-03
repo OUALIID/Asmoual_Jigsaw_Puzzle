@@ -33,4 +33,31 @@ export default async function generateJigsaw(imageSource, boardCols, boardWidthP
     const [left, top, right, bottom] = [0, 1, 2, 3];
     const pieceEdges = [];
 
-    
+/* ------------------------------------------  Iterate over each puzzle piece and create edges  ----------------------------------------*/
+
+  // Iterate over each puzzle piece and create edges
+  for (let i = 0; i < totalPieces; i++) {
+    pieceEdges.push(edgeNames.slice());
+  }
+ 
+  for (let piece = 0; piece < totalPieces; piece++) {
+    // Checks if the current piece is at the end of the row.
+    if ((piece + 1) % numColumns === 0) {
+      pieceEdges[piece][right] = null;
+      pieceEdges[(piece + 1) % totalPieces][left] = null; // the first piece of the next row
+    } else {
+      // Generate a random decision to extend the edge or not
+      const extendEdge = Math.random() < 0.5;
+      pieceEdges[piece][right] = extendEdge;
+      pieceEdges[piece + 1][left] = !extendEdge;
+    }
+    // Checks if the current piece is in the bottom row.
+    if (Math.ceil((piece + 1) / numColumns) === numRows) {
+      pieceEdges[piece][bottom] = null;
+      pieceEdges[(piece + numColumns) % totalPieces][top] = null;
+    } else {
+      const extendEdge = Math.random() < 0.5;
+      pieceEdges[piece][bottom] = extendEdge;
+      pieceEdges[(piece + numColumns) % totalPieces][top] = !extendEdge;
+    }
+  }
