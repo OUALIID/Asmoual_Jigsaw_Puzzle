@@ -499,3 +499,18 @@ function displayErrorMessage(errorMessage) {
 }
 
 
+// Retrieve image number from query parameter
+const imageNumber = new URLSearchParams(window.location.search).get('image');
+let imageUrl = "";
+
+if (imageNumber) {
+    imageUrl = `../static/game_assets/preview_images/${imageNumber}.png`;
+}
+
+const imageElement = document.createElement("img");
+if (imageUrl) {
+    imageElement.src = imageUrl;
+    imageSource = imageUrl;
+}
+
+startGame();
