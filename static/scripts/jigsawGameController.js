@@ -514,3 +514,14 @@ if (imageUrl) {
 }
 
 startGame();
+
+// A simple addition to the fun.
+let docTitle = document.title;
+
+window.addEventListener("blur", () => {
+    document.title = "Come Back to Play! 🎉";
+});
+
+window.addEventListener("focus", () => {
+    document.title = docTitle;
+});
