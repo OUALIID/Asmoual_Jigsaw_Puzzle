@@ -1,6 +1,6 @@
-<h1>ASMOUAL JIGSAW </div><img src="https://github.com/OUALIID/Asmoual-Jigsaw/assets/96590775/0d2b4e25-33b6-43f2-b257-0cf9aa468387" width="35px" height="32px"></h1>
+<h1>ASMOUAL JIGSAW </div><img src="https://github.com/OUALIID/Asmoual_Jigsaw_Puzzle/assets/96590775/2bdb1d7e-423a-49ee-8e7f-9c5368beae2c" width="35px" height="32px"></h1>
 <div align="center">
-<img src="https://github.com/OUALIID/Asmoual-Jigsaw/assets/96590775/396cc303-662a-4db9-8e52-d9045ebd672e" width="550px" height="250px" ></div>
+<img src="https://github.com/OUALIID/Asmoual_Jigsaw_Puzzle/assets/96590775/0b52c9b4-5b35-4156-8657-ba9abc57eefb" width="550px" height="250px" ></div>
 </div>
 
 
@@ -117,17 +117,15 @@ The **ASMOUAL JIGSAW** game employs a sophisticated approach to dissecting uploa
 
 ## Interactive Landing Page Showcase
 <div align="center">
-  <img src="https://github.com/OUALIID/Asmoual-Jigsaw/assets/96590775/226ee1cb-5a56-420b-a0d3-ba5984a26c3f" alt="Firewall" width="850px" height="450px" ></div>
+  <img src="https://github.com/OUALIID/Asmoual_Jigsaw_Puzzle/assets/96590775/490313e7-12b4-47cc-815b-fed3bc525b01"  width="850px" height="450px" ></div>
 </div>
-
 
 
 The landing page for ASMOUAL JIGSAW is meticulously designed, effectively blending visual elements with descriptive content to provide visitors with a comprehensive understanding of the platform's capabilities. The structured layout ensures easy navigation and readability. The inclusion of animated moving images adds a dynamic flair, enhancing user engagement and underscoring the platform's innovative approach to jigsaw puzzle gaming.
 
 
 <div align="center">
-  <img src="https://github.com/OUALIID/Asmoual-Jigsaw/assets/96590775/a54c4f8d-2877-46e3-aba6-46fd472d0cda" width="850px" height="550px" ></div>
-</div>
+  <img src="https://github.com/OUALIID/Asmoual_Jigsaw_Puzzle/assets/96590775/512ea65d-b043-4224-869f-cabbfd49b09b" width="850px" height="550px" ></div>
 
 
 **Game Preview Section:**
@@ -142,7 +140,7 @@ You can upload any image to a page by simply touching it. There is also another 
 
 ## Interactive Game Interface Showcase
 
-[Display the game interface.webm](https://github.com/OUALIID/Asmoual-Jigsaw/assets/96590775/05f0c8e1-417b-4f22-a685-c7b1722848a1)
+[Display.the.game.interface.webm](https://github.com/OUALIID/Asmoual_Jigsaw_Puzzle/assets/96590775/4faec010-2a89-4c44-8f58-cfdfbe5669cd)
 
 
 ## Jigsaw Puzzle Game Features
@@ -152,7 +150,7 @@ You can upload any image to a page by simply touching it. There is also another 
   - Seamless UI: Automatic hide of input methods post image selection.
   - Error Handling: Notifies users of invalid image links.
 
-[Show errors.webm](https://github.com/OUALIID/Asmoual-Jigsaw/assets/96590775/08db9868-8952-4e8c-9685-56d79219204c)
+[Show.errors.webm](https://github.com/OUALIID/Asmoual_Jigsaw_Puzzle/assets/96590775/858a207f-9c02-4021-9887-c3b7c67e0c3a)
 
 
 - **Gameplay Options**: 
@@ -169,7 +167,8 @@ You can upload any image to a page by simply touching it. There is also another 
 
 ## Congratulations Screen Overview
 
-[Congratulations.webm](https://github.com/OUALIID/Asmoual-Jigsaw/assets/96590775/c13fa6a7-1bca-4975-b9dd-ae5f5fe06be3)
+[Congratulations.webm](https://github.com/OUALIID/Asmoual_Jigsaw_Puzzle/assets/96590775/3f59b250-0a2c-4fda-8f8d-25a88146ea28)
+
 
 The "Congratulations" screen is an integral part of the game, designed to provide feedback and celebrate the player's success upon completing the puzzle. Here's a breakdown of its components and functionalities:
 
@@ -193,7 +192,7 @@ The "Congratulations" screen is an integral part of the game, designed to provid
 
 ## Mobile Orientation Reminder Overview
 
-[rotate phone.webm](https://github.com/OUALIID/Asmoual-Jigsaw/assets/96590775/4a33cfbe-c7cc-4215-99bf-558c60d7d09d)
+[rotate.phone.webm](https://github.com/OUALIID/Asmoual_Jigsaw_Puzzle/assets/96590775/d2a27970-20d2-4478-8bb4-56a44799a03c)
 
 
 The mobile orientation reminder is an intuitive feature integrated into the game page to optimize the gaming experience specifically for mobile users. This section elucidates the feature's objective and its interaction methodology with the user.
@@ -207,7 +206,7 @@ The mobile orientation reminder is an intuitive feature integrated into the game
 
 Enhance your experience with a playful touch! As you navigate away from **ASMOUAL JIGSAW**, a friendly reminder beckons you back to continue your puzzle-solving adventure.
 <div align="center">
-  <img src="https://github.com/OUALIID/Asmoual-Jigsaw/assets/96590775/6e922dd6-66e9-49d2-ab9d-6fa997453507"  width="750px" >
+  <img src="https://github.com/OUALIID/Asmoual_Jigsaw_Puzzle/assets/96590775/5c00f270-dff9-4e97-bf1e-3b1f3a34d67e"  width="750px" >
 
 
 ## Conclusion
